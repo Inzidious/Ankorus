@@ -1,13 +1,16 @@
-pragma solidity ^0.4.11;
+pragma solidity ^0.4.16;
 
 interface IERC20
 {
-    function total_supply() constant returns( uint256 total );
-    function get_balance() constant returns( uint256 balance );
+    function total_coins() constant returns( uint256 total );
+    function balance_of() constant returns( uint256 balance );
     
-    function transfer( address _dest, uint256 amount ) returns( bool success );
-    function transfer_from( address _source, address _dest ) returns( bool success );
+    function transfer_coins( address _recipient, uint256 _value ) returns( bool success );
+    function transfer_coins_from( address _owner, address _recipient, uint256 _value ) returns( bool success );
     
     function approve( address _spender, uint256 _value ) returns( bool success );
-    function allowence( address _owner, address _spender ) returns ( uint256 remaining );
+    function allowance( address _owner, address _spender ) returns ( uint256 remaining );
+    
+    event Transfer( address indexed _from, address indexed _to, uint256 _value );
+    event Approval( address _owner, address _spender, uint256 _value );
 }
